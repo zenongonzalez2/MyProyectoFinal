@@ -1,0 +1,33 @@
+
+.categorias{
+    display: flex;
+}
+.productos{
+    display: flex;
+    justify-content: space-around;
+}
+.producto img{
+    max-width: 100%;
+    height: auto;
+    display:block;
+    margin: 0 auto;
+}
+.producto{
+    
+    width: 250px;
+    background-color: rgba(201, 54, 142, 0.577);
+    box-shadow: 0 10px 20px black;
+    border-radius: 30px;
+    overflow: hidden;
+}
+.producto-info{
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.button{
+    padding: 10px 30px;
+    border-radius: 20px;
+    background-color: green;
+}

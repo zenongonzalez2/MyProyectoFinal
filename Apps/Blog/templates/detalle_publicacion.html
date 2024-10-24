@@ -1,0 +1,44 @@
+{% extends "inicio.html" %}
+{% load static %}
+{% block content %}
+<div class="container my-5">
+    <div class="row">
+        <div class="col-md-8 offset-md-2">
+            <div class="card">
+                <img src="{{ publicacion.imagen.url }}" class="card-img-top" alt="Imagen de {{ publicacion.titulo }}">
+                <div class="card-body">
+                    <h1 class="display-4">{{ publicacion.titulo }}</h1>
+                    <p class="text-muted">Por: {{ publicacion.autor }} | Publicado el: {{ publicacion.created_at }}</p>
+                    <p>{{ publicacion.contenido }}</p>
+                    <a href="{% url 'blog' %}" class="btn btn-secondary mt-3">Volver al Blog</a>
+                </div>
+            </div>
+            <div class="card mt-4">
+                <div class="card-body">
+                    <h2>Comentarios</h2>
+                    {% for comentario in comentarios %}
+                        <p><strong>{{ comentario.autor }}:</strong> {{ comentario.contenido }}</p>
+                        {% if comentario.autor == user or perms.blog.puede_eliminar_comentario %}
+                            <a href="{% url 'eliminar_comentario' comentario.id %}" class="btn btn-danger">Eliminar</a>
+                        {% endif %}
+                    {% endfor %}
+                </div>
+            </div>
+            <div class="card mt-4">
+                <div class="card-body">
+                    <h3>Añadir un comentario</h3>
+                    {% if user.is_authenticated %}
+                        <form method="POST">
+                            {% csrf_token %}
+                            {{ form.as_p }}
+                            <button type="submit" class="btn btn-primary">Enviar</button>
+                        </form>
+                    {% else %}
+                        <p>Por favor, <a href="{% url 'login' %}">inicia sesión</a> para añadir un comentario.</p>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

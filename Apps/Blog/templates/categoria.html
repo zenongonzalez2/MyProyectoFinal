@@ -1,0 +1,28 @@
+{%extends "inicio.html"%}
+
+{% load static %}
+
+{% block content %}
+    <nav>
+        <ul  class="categorias">
+            <a href="{% url 'blog' %}">Todos</a>
+
+            {% for c in categorias %}
+                <a href="{% url 'categoria' c.id %}">{{c.titulo}}</a>
+
+            {% endfor %}
+        </ul>
+    </nav>
+
+    <div>
+        {% for p in publicaciones %}
+        <div>
+            <img src="{{p.imagen.url}}" alt="", height="100", width="200">
+            <h1>{{p.titulo}}</h1>
+            <p>{{p.contenido}}</p>
+            <p>{{p.autor}}</p>
+        </div>
+    {% endfor %}
+    </div>
+
+{% endblock %}

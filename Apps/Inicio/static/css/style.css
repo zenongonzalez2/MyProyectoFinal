@@ -1,0 +1,51 @@
+
+.categorias{
+    display: flex;
+}
+.productos{
+    display: flex;
+    justify-content: space-around;
+}
+.producto img{
+    max-width: 100%;
+    height: auto;
+    display:block;
+    margin: 0 auto;
+}
+.producto{
+    
+    width: 250px;
+    background-color: rgba(201, 54, 142, 0.577);
+    box-shadow: 0 10px 20px black;
+    border-radius: 30px;
+    overflow: hidden;
+}
+.producto-info{
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.button{
+    padding: 10px 30px;
+    border-radius: 20px;
+    background-color: green;
+}
+/* CSS para la imagen de fondo borrosa */
+.blurred-background {
+    background-image: url("{% static 'imag/fondo.jpg' %}"); /* Ajusta la ruta de la imagen según sea necesario */
+    background-size: cover;
+    background-attachment:  fixed;
+
+}
+.transparent-section {
+    background-color: rgba(255, 255, 255, 0.8); /* Fondo blanco con 80% de opacidad */
+    padding: 20px;
+    border-radius: 10px; /* Bordes redondeados para darle estilo */
+}
+
+footer.transparent-footer {
+    background-color: rgba(255, 255, 255, 0.8); /* Fondo blanco con 80% de opacidad */
+    padding: 20px;
+    border-radius: 10px;
+}

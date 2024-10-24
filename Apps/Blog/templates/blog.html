@@ -1,0 +1,43 @@
+{% extends "inicio.html" %}
+{% load static %}
+{% block content %}
+<nav class="navbar navbar-expand-lg navbar-light bg-light mb-3">
+    <div class="container-fluid">
+        <ul class="navbar-nav me-auto">
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'blog' %}">Todos</a>
+            </li>
+            {% for c in categorias %}
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'categoria' c.id %}">{{ c.titulo }}</a>
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+</nav>
+
+<div class="container">
+    <div class="row">
+        {% for p in publicaciones %}
+            <div class="col-md-4 mb-4">
+                <div class="card h-100">
+                    <img src="{{ p.imagen.url }}" class="card-img-top" alt="Imagen de {{ p.titulo }}" style="height: 200px; object-fit: cover;">
+                    <div class="card-body d-flex flex-column">
+                        <h5 class="card-title">{{ p.titulo }}</h5>
+                        <p class="card-text">{{ p.contenido|truncatewords:20 }}</p>
+                        <p class="text-muted">Por: {{ p.autor }}</p>
+                        <a href="{% url 'detalle_publicacion' p.id %}" class="btn btn-primary mt-auto">Leer más</a>
+                        {% if perms.blog.puede_editar_publicacion %}
+                            <a href="{% url 'editar_publicacion' p.id %}" class="btn btn-primary">Editar</a>
+                        {% endif %}
+                        {% if perms.blog.puede_eliminar_publicacion %}
+                            <a href="{% url 'eliminar_publicacion' p.id %}" class="btn btn-danger">Eliminar</a>
+                        {% endif %}
+
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

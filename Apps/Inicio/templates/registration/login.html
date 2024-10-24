@@ -1,0 +1,50 @@
+{% extends "inicio.html" %}
+{% load static %}
+{% block content %}
+<style>
+    .form-group {
+        display: flex;
+        flex-direction: column;
+        align-items: center; /* Centra los elementos dentro del grupo */
+    }
+
+    .form-group label {
+        font-weight: bold;
+        margin-bottom: 5px;
+    }
+
+    .form-group input {
+        width: 100%; /* Asegura que el input ocupe el 100% del contenedor */
+        max-width: 400px; /* Limita el ancho máximo para inputs */
+        padding: 10px;
+        margin-bottom: 20px;
+    }
+</style>
+<div class="container my-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card shadow-lg border-0">
+                <div class="card-header text-center text-white" style="background: linear-gradient(90deg, #ff6b6b, #f06595);">
+                    <h1 class="display-4">Iniciar sesión</h1>
+                </div>
+                <div class="card-body p-4">
+                    <form method="POST">
+                        {% csrf_token %}
+                        <div class="form-group mb-4">
+                            <label for="username">Usuario:</label>  <!-- Cambia la etiqueta aquí -->
+                            {{ form.username }}  <!-- Renderiza el campo de usuario -->
+                        </div>
+                        <div class="form-group mb-4">
+                            <label for="password">Contraseña:</label>
+                            {{ form.password }}  <!-- Renderiza el campo de contraseña -->
+                        </div>
+                        <div class="text-center">
+                            <button type="submit" class="btn btn-primary btn-lg mt-3" style="background: linear-gradient(90deg, #ff6b6b, #f06595); border: none;">Iniciar sesión</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
